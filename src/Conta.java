@@ -55,10 +55,8 @@ public class Conta {
 
     public boolean transferir(Conta destino, double valor){
         if (this.sacar(valor)){
-            destino.depositar(valor);
-
-            this.debitar(valor,"Transferência enviada");
-            destino.creditar(valor,"Transferência recebida" );
+            destino.creditar(valor, "Transferencia recebida");
+            this.adicionarHistorico("Transferencia enviada", valor);
             return true;
         }
         return false;

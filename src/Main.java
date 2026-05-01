@@ -2,29 +2,29 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args){
+
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Informe o titular da conta: ");
-        String titular = scanner.nextLine();
+        System.out.print("Enter account holder name: ");
+        String holderName = scanner.nextLine();
 
-        ContaPoupanca poupanca = new ContaPoupanca(titular);
-        ContaCorrente corrente = new ContaCorrente(titular);
+        SavingsAccount savings = new SavingsAccount(holderName);
+        CheckingAccount checking = new CheckingAccount(holderName);
 
-        corrente.depositar(1000);
+        checking.deposit(1000);
+        savings.deposit(1000);
 
-        poupanca.depositar(1000);
+        checking.transfer(savings, 100);
 
-        corrente.transferir(poupanca, 100);
+        System.out.println(checking);
+        System.out.println(savings);
 
-        System.out.println(corrente);
-        System.out.println(poupanca);
+        System.out.println("\nCheckint Account History:");
+        checking.printTransactionHistory();
 
-        System.out.println("\nHistórico Conta Corrente-");
-        corrente.verHistorico();
+        System.out.println("\n---------------------------------");
 
-        System.out.println("---------------------------------");
-
-        System.out.println("\nHistórico Conta Poupança-");
-        poupanca.verHistorico();
+        System.out.println("\nSavings Account History");
+        savings.printTransactionHistory();
     }
 }
